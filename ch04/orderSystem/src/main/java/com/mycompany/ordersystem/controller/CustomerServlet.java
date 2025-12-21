@@ -10,8 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "customerServlet", value = "/customer")
@@ -22,7 +20,38 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doPost(
             HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String pre = "/customer";
+        String uri = "/index.jsp";
+        String id, name, address, email;
+        id = request.getParameter("id");
+        String action = request.getParameter("action");
+        switch (action) {
+            case "save":
+                // 포스트로 왔으니까 다 getParameter
+                name = request.getParameter("name");
+                address = request.getParameter("address");
+                email = request.getParameter("email");
+                Customer customer = new Customer();
+                customer.setId(Long.valueOf(id));
+                customer.setName(name);
+                customer.setAddress(address);
+                customer.setEmail(email);
+                customerService.saveCustomer(customer);
+                break;
+            case "delete":
+                Customer old = customerService.getCustomer(Long.valueOf(id));
+                if (old != null) {
+                    customerService.deleteCustomer(old.getId());
+                }
+                break;
+            default:
+        }
+        request.getRequestDispatcher(uri).forward(request, response);
+    }
+
+    @Override
+    protected void doGet(
+            HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final String pre = "/customer/";
         final String post = ".jsp";
         String action = request.getParameter("action");
         // 근데 이건 왜 해야 하지? 널로 들어오는 경우는 없을텐데...
@@ -53,9 +82,5 @@ public class CustomerServlet extends HttpServlet {
 
         String uri = pre + action + post;
         request.getRequestDispatcher(uri).forward(request, response);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }

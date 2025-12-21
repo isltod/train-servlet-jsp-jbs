@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.GregorianCalendar, java.util.Calendar" %>
 <p>
     <a href="/index.jsp">홈으로</a>
