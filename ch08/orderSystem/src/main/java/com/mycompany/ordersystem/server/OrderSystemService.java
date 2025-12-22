@@ -11,6 +11,7 @@ import com.mycompany.ordersystem.order.repository.OrderRepository;
 import com.mycompany.ordersystem.order.repository.OrderRepositoryImplList;
 import com.mycompany.ordersystem.order.service.OrderServiceImpl;
 import com.mycompany.ordersystem.product.repository.ProductRepository;
+import com.mycompany.ordersystem.product.repository.ProductRepositoryImplJDBC;
 import com.mycompany.ordersystem.product.repository.ProductRepositoryImplList;
 import com.mycompany.ordersystem.product.service.ProductServiceImpl;
 import com.mycompany.ordersystem.services.CustomerService;
@@ -52,12 +53,12 @@ public class OrderSystemService {
         } catch (IOException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        // 고객 관리 부분...
         // customerRepository = new CustomerRepositoryImplList();
         customerRepository = new CustomerRepositoryImplJDBC(connection);
         orderRepository = new OrderRepositoryImplList();
         inventoryRepository = new InventoryRepositoryImplList();
-        productRepository = new ProductRepositoryImplList();
+        // productRepository = new ProductRepositoryImplList();
+        productRepository = new ProductRepositoryImplJDBC(connection);
 
         this.customerService = new CustomerServiceImpl(customerRepository);
         this.productService = new ProductServiceImpl(productRepository);

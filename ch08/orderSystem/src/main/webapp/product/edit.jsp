@@ -14,7 +14,7 @@
         <label>제품명: </label>
         <input type="text" name="name" value="${product.name}"><br>
         <label>설명: </label>
-        <input type="text" name="description" value="${produc.description}"><br>
+        <input type="text" name="description" value="${product.description}"><br>
         <label>가격: </label>
         <input type="text" name="price" value="${product.price}"><br>
         <input type="submit" value="저장">
