@@ -5,9 +5,11 @@ import com.mycompany.ordersystem.customer.respository.CustomerRepositoryImplJDBC
 import com.mycompany.ordersystem.customer.respository.CustomerRepositoryImplList;
 import com.mycompany.ordersystem.customer.service.CustomerServiceImpl;
 import com.mycompany.ordersystem.inventory.repository.InventoryRepository;
+import com.mycompany.ordersystem.inventory.repository.InventoryRepositoryImplJDBC;
 import com.mycompany.ordersystem.inventory.repository.InventoryRepositoryImplList;
 import com.mycompany.ordersystem.inventory.service.InventoryServiceImpl;
 import com.mycompany.ordersystem.order.repository.OrderRepository;
+import com.mycompany.ordersystem.order.repository.OrderRepositoryImplJDBC;
 import com.mycompany.ordersystem.order.repository.OrderRepositoryImplList;
 import com.mycompany.ordersystem.order.service.OrderServiceImpl;
 import com.mycompany.ordersystem.product.repository.ProductRepository;
@@ -55,10 +57,12 @@ public class OrderSystemService {
         }
         // customerRepository = new CustomerRepositoryImplList();
         customerRepository = new CustomerRepositoryImplJDBC(connection);
-        orderRepository = new OrderRepositoryImplList();
-        inventoryRepository = new InventoryRepositoryImplList();
-        // productRepository = new ProductRepositoryImplList();
+        // inventoryRepository = new InventoryRepositoryImplList();
         productRepository = new ProductRepositoryImplJDBC(connection);
+        // orderRepository = new OrderRepositoryImplList();
+        inventoryRepository = new InventoryRepositoryImplJDBC(connection);
+        // productRepository = new ProductRepositoryImplList();
+        orderRepository = new OrderRepositoryImplJDBC(connection, customerRepository, productRepository);
 
         this.customerService = new CustomerServiceImpl(customerRepository);
         this.productService = new ProductServiceImpl(productRepository);
