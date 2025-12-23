@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                https://jakarta.ee/xml/ns/persistence/orm/orm_3_0.xsd">
+    <persistence-unit name="default">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!-- 어노테이션 사용하는 경우...생략 해도 된다는데 쓰면 더 좋나? -->
+        <class>com.mycompany.domain.Customer</class>
+        <!-- XML 파일로 매핑할 경우라는데, 아마도 거의 안쓰는 모양이네... -->
+        <!-- 그리고 뭘 설명 안했는지는 모르겠지만 JPQL 지원이 안됨... -->
+        <!-- <mapping-file>META-INF/customer.orm.xml</mapping-file> -->
+        <properties>
+            <!-- 이제는 PostgreSQL로 해보자... -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/order_system"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="1111"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
