@@ -3,7 +3,7 @@ package com.mycompany.ordersystem.domain;
 import jakarta.persistence.*;
 
 @Entity
-// @Table(name = "customer")
+@Table(name = "customer")
 @Access(AccessType.FIELD)
 public class Customer {
     @Id
@@ -17,16 +17,8 @@ public class Customer {
     @Column(name = "customer_email")
     private String email;
 
-    // hibernate 버전 문제로 이제는 이걸 요구한다...
-    public Customer(long id, String name, String address, String email) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.email = email;
-    }
-
-    public Customer() {
-    }
+    // JPQL이나 Criteria API를 사용해 DTO를 만들면 hibernate가 모든 필드를 받는 생성자를 요구한다...
+    // 그냥 Native SQL이 답인가...
 
     public long getId() {
         return id;
