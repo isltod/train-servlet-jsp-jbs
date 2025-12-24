@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app version="5.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                            https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>로그인</web-resource-name>
+            <url-pattern>/customer/*</url-pattern>
+            <url-pattern>/product/*</url-pattern>
+            <url-pattern>/inventory/*</url-pattern>
+            <url-pattern>/order/*</url-pattern>
+        </web-resource-collection>
+        <!-- <auth-constraint> -->
+        <!--     <role-name>ROLE_ADMIN</role-name> -->
+        <!--     <role-name>ROLE_MANAGER</role-name> -->
+        <!--     <role-name>ROLE_USER</role-name> -->
+        <!-- </auth-constraint> -->
+    </security-constraint>
+    <login-config>
+        <!-- 기껏 설명해놓고 이건 불편해서 안쓴다고... -->
+        <!-- 이것만 가지고 톰캣 기본 로그인 창 뜨질 않는다..위에 auth-constraint가 있어야 뜬다... -->
+        <!-- <auth-method>BASIC</auth-method> -->
+        <!-- 주로 이걸 쓴다고 -->
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+</web-app>
