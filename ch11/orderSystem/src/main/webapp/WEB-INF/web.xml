@@ -50,4 +50,7 @@
     <!--     <filter-name>LoggingFilter</filter-name> -->
     <!--     <servlet-name>customerServlet</servlet-name> -->
     <!-- </filter-mapping> -->
+    <!-- <listener> -->
+    <!--     <listener-class>com.mycompany.ordersystem.controller.OrderListener</listener-class> -->
+    <!-- </listener> -->
 </web-app>
