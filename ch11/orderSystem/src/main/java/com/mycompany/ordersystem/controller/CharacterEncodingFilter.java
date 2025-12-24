@@ -21,12 +21,6 @@ public class CharacterEncodingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         this.encoding = filterConfig.getInitParameter("encoding");
-        // 왜 이게 없으면 한글 출력이 깨지는지 알 수가 없다...
-        try {
-            System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
         System.out.println(filterConfig.getFilterName() + " 필터가 시작되었습니다.");
         System.out.println("필터 초기 변수는 encoding: " + this.encoding + " 입니다.");
     }
