@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>제품 정보 등록</h1>
+    <%
+        if (request.isUserInRole("ROLE_MANAGER")) {
+    %>
     <form action="/product" method="post">
         <input type="hidden" name="action" value="save">
         <label>ID: </label>
@@ -19,6 +22,13 @@
         <input type="text" name="price" value="${product.price}"><br>
         <input type="submit" value="저장">
     </form>
+    <%
+        } else {
+    %>
+    <p>이 페이지는 관리자만 사용할 수 있습니다.</p>
+    <%
+        }
+    %>
     <c:import url="../footer.jsp" />
 </body>
 </html>

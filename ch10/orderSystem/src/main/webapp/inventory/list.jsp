@@ -16,12 +16,18 @@
                 <td>${inventory.price}</td>
                 <td>${inventory.quantity}</td>
                 <td>
+                    <%
+                        if (request.isUserInRole("ROLE_MANAGER")) {
+                    %>
                     <a href="<c:url value='/inventory'>
                         <c:param name="action" value="stock"/>
                         <c:param name="id" value='${inventory.id}'/>
                     </c:url>">
                         입고
                     </a>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
         </c:forEach>

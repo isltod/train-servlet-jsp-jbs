@@ -6,9 +6,22 @@
         <title>주문 예제 시스템</title>
     </head>
     <body>
-        <h1><%= "주문 예제 시스템" %>
-        </h1>
+        <h1><%= "주문 예제 시스템" %></h1>
         <br>
+        <%
+            if (request.isSecure()) {
+        %>
+        <%
+            if (request.getRemoteUser() != null) {
+        %>
+        <h2>로그인 정보</h2>
+        <p>
+            <%= request.getUserPrincipal().getName() %>님이 로그인 했습니다.<br>
+            <a href="/customer?action=logout">로그 아웃</a>
+        </p>
+        <%
+            }
+        %>
         <p>
             <h2>고객 정보 관리</h2>
             <a href="/customer?action=edit">고객 정보 입력</a><br>
@@ -41,5 +54,12 @@
                 주문 조회
             </a>
         </p>
+        <%
+            } else {
+        %>
+        이 페이지에 접근할 수 없습니다. HTTPS 프로토콜을 사용하세요.
+        <%
+            }
+        %>
     </body>
 </html>

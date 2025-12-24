@@ -16,6 +16,9 @@
                 <td>${inventory.description}</td>
                 <td>${inventory.price}</td>
                 <td>
+                    <%
+                        if (request.isUserInRole("ROLE_MANAGER")) {
+                    %>
                     <a href="<c:url value='/product?action=update&id=${inventory.id}' />">
                         변경
                     </a>
@@ -24,6 +27,9 @@
                         <c:param name="id" value='${inventory.id}' /></c:url>">
                         삭제
                     </a>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
         </c:forEach>
